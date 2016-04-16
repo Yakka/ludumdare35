@@ -4,37 +4,54 @@ using System.Collections.Generic;
 
 public class BuildingGenerator : MonoBehaviour {
     
-    public int numberOfLevels;
-    public int numberOfRows;
+    public int amountOfLevels;
+    public int amountOfColumns;
+
+    public List<int> levelsWithBalconies = new List<int>();
 
     public Piece windowPrefab;
     public Piece cornerLeftPrefab;
     public Piece cornerRightPrefab;
+    public Piece doorPrefab;
     public List<Piece> balconyPrefabs = new List<Piece>();
 
 
     void Start () {
-        Piece previousPiece = null;
-	    for(int level = 0; level < numberOfLevels; level++) {
+        Vector3 translationY;
+        Vector3 translationX;
+        float currentHigh = 0;
+        for (int level = 0; level <= amountOfLevels; level++) {
+            Piece previousPiece = null;
+            float metricY = level == 0 ? Utiles.METRIC_LARGE_Y : Utiles.METRIC_Y; // TODO: cleaner writing
+            
+            translationY = Vector3.back * currentHigh;
             // Corners
             Piece cornerLeft = Instantiate(cornerLeftPrefab, transform.position, transform.rotation) as Piece;
             cornerLeft.transform.parent = transform;
-            cornerLeft.transform.Translate(numberOfRows * Utiles.METRIC_X, 0, level * Utiles.METRIC_Y);
+            cornerLeft.transform.Translate(translationY);
+            cornerLeft.transform.Translate(Utiles.METRIC_X, 0, 0);
             cornerLeft.name = "CornerLeftLevel" + level;
 
             Piece cornerRight = Instantiate(cornerRightPrefab, transform.position, transform.rotation) as Piece;
             cornerRight.transform.parent = transform;
-            cornerRight.transform.Translate(-Utiles.METRIC_X, 0, level * Utiles.METRIC_Y);
+            cornerRight.transform.Translate(translationY);
+            cornerRight.transform.Translate(-(amountOfColumns+1) * Utiles.METRIC_X, 0, 0);
             cornerRight.name = "CornerRightLevel" + level;
 
             // Level building
-            for (int column = 0; column < numberOfRows; column++) {
+            for (int column = 0; column <= amountOfColumns; column++) {
+                translationX = Vector3.left * column * Utiles.METRIC_X;
                 string name = string.Empty;
                 Piece piece = null;
-                // Balcony
-                if(level == 1 || level == 5) {
+                // Ground level:
+                if(level == 0) {
+                    piece = Instantiate(doorPrefab, transform.position, transform.rotation) as Piece;
+                    name = "Door";
+                }
+                // Balcony:
+                else if (levelsWithBalconies.Contains(level)) {
                     piece = Instantiate(FindNextPiece(balconyPrefabs, previousPiece), transform.position, transform.rotation) as Piece;
-                    name = "Balcony1";
+                    name = "Balcony";
                 }
                 // Windows:
                 else {
@@ -42,10 +59,11 @@ public class BuildingGenerator : MonoBehaviour {
                     name = "Window";
                 }
                 piece.transform.parent = transform;
-                piece.transform.Translate(column * Utiles.METRIC_X, 0, level * Utiles.METRIC_Y);
+                piece.transform.Translate(translationX + translationY);
                 piece.name = name + column + "Level" + level;
                 previousPiece = piece;
             }
+            currentHigh += metricY;
         }
 	}
 	
@@ -57,7 +75,7 @@ public class BuildingGenerator : MonoBehaviour {
             return null;
         }
 
-        // If their is not previous piece, it's free for all:
+        // If there is not previous piece, it's free for all:
         if (_previousPiece == null) {
             return _nextPieces[Random.Range(0, authorizedPieces.Count)];
         }
