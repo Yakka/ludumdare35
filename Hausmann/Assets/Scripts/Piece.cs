@@ -14,9 +14,10 @@ public class Piece : MonoBehaviour {
     }
 
     public List<Constraint> constraints = new List<Constraint>();
-    public int level;
-    public int column;
     public List<Material> materials = new List<Material>();
+    public bool isRoof = false;
+    [HideInInspector]
+    public int level = 0;
 
     public void Start() {
         GetComponent<Renderer>().material = materials[Random.Range(0, materials.Count)];
