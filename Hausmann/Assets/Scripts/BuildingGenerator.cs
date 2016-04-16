@@ -14,6 +14,7 @@ public class BuildingGenerator : MonoBehaviour {
 
 
     void Start () {
+
 	    for(int level = 0; level < numberOfLevels; level++) {
             // Corners
             Piece cornerLeft = Instantiate(cornerLeftPrefab, transform.position, transform.rotation) as Piece;
@@ -28,17 +29,21 @@ public class BuildingGenerator : MonoBehaviour {
 
             // Level building
             for (int column = 0; column < numberOfRows; column++) {
+                string name = string.Empty;
+                Piece piece = null;
                 // Balcony
                 if(level == 1 || level == 5) {
-                    
+                    piece = Instantiate(balcony1Prefab, transform.position, transform.rotation) as Piece;
+                    name = "Balcony1";
                 }
                 // windows:
                 else {
-                    Piece window = Instantiate(windowPrefab, transform.position, transform.rotation) as Piece;
-                    window.transform.parent = transform;
-                    window.transform.Translate(column * Utiles.METRIC_X, 0, level * Utiles.METRIC_Y);
-                    window.name = "WindowColumn" + column + "Level" + level;
+                    piece = Instantiate(windowPrefab, transform.position, transform.rotation) as Piece;
+                    name = "Window";
                 }
+                piece.transform.parent = transform;
+                piece.transform.Translate(column * Utiles.METRIC_X, 0, level * Utiles.METRIC_Y);
+                piece.name = name + column + "Level" + level;
             }
         }
 	}
