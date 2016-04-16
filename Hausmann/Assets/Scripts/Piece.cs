@@ -10,7 +10,7 @@ public class Piece : MonoBehaviour {
         None = 0,
         Balcony1,
         Balcony2,
-        NumberOfConstraints
+        AmountOfConstraints
     }
 
     public List<Constraint> constraints = new List<Constraint>();
