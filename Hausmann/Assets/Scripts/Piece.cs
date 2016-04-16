@@ -16,7 +16,11 @@ public class Piece : MonoBehaviour {
     public List<Constraint> constraints = new List<Constraint>();
     public int level;
     public int column;
-    public GameObject plane; // TODO: the displayed plane
+    public List<Material> materials = new List<Material>();
+
+    public void Start() {
+        GetComponent<Renderer>().material = materials[Random.Range(0, materials.Count)];
+    }
 
     // Checks if a list of constraints match with this object's constraints
     public bool IsMatching(List<Constraint> _constraintsToCompare) {
