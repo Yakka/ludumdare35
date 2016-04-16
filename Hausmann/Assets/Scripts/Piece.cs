@@ -44,6 +44,10 @@ public class Piece : MonoBehaviour {
         return isMatching;
     }
 
+    public bool IsMatching(Piece _pieceToCompare) {
+        return IsMatching(_pieceToCompare.constraints);
+    }
+
     // Checks if two constraints match together
     private bool IsMatching(Constraint _constraint1, Constraint _constraint2) {
         bool isMatching = true;
