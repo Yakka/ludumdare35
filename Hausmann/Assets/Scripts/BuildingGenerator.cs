@@ -10,11 +10,11 @@ public class BuildingGenerator : MonoBehaviour {
     public Piece windowPrefab;
     public Piece cornerLeftPrefab;
     public Piece cornerRightPrefab;
-    public Piece balcony1Prefab;
+    public List<Piece> balconyPrefabs = new List<Piece>();
 
 
     void Start () {
-
+        Piece previousPiece = null;
 	    for(int level = 0; level < numberOfLevels; level++) {
             // Corners
             Piece cornerLeft = Instantiate(cornerLeftPrefab, transform.position, transform.rotation) as Piece;
@@ -33,10 +33,10 @@ public class BuildingGenerator : MonoBehaviour {
                 Piece piece = null;
                 // Balcony
                 if(level == 1 || level == 5) {
-                    piece = Instantiate(balcony1Prefab, transform.position, transform.rotation) as Piece;
+                    piece = Instantiate(FindNextPiece(balconyPrefabs, previousPiece), transform.position, transform.rotation) as Piece;
                     name = "Balcony1";
                 }
-                // windows:
+                // Windows:
                 else {
                     piece = Instantiate(windowPrefab, transform.position, transform.rotation) as Piece;
                     name = "Window";
@@ -44,11 +44,12 @@ public class BuildingGenerator : MonoBehaviour {
                 piece.transform.parent = transform;
                 piece.transform.Translate(column * Utiles.METRIC_X, 0, level * Utiles.METRIC_Y);
                 piece.name = name + column + "Level" + level;
+                previousPiece = piece;
             }
         }
 	}
 	
-	private Piece FindNextPiece(Piece _previousPiece, List<Piece> _nextPieces) {
+	private Piece FindNextPiece(List<Piece> _nextPieces, Piece _previousPiece = null) {
         List<Piece> authorizedPieces = new List<Piece>();
 
         if (_nextPieces == null || _nextPieces.Count == 0) {
@@ -56,11 +57,11 @@ public class BuildingGenerator : MonoBehaviour {
             return null;
         }
 
+        // If their is not previous piece, it's free for all:
         if (_previousPiece == null) {
-            Debug.LogError(GetType().Name + ".FindNextPiece: _previousPiece is null.");
-            return null;
+            return _nextPieces[Random.Range(0, authorizedPieces.Count)];
         }
-
+        // Else, we search all the pieces matching with the previous one:
         foreach(Piece nextPiece in _nextPieces) {
             if(_previousPiece.IsMatching(nextPiece)) {
                 authorizedPieces.Add(nextPiece);
