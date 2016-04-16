@@ -20,16 +20,14 @@ public class Building : MonoBehaviour {
     public Piece groundBackgroundPrefab;
     public Piece roofBackgroundPrefab;
 
+    private int roofLevel;
+
     void Start () {
-        
-        float currentHigh = 0;
+        roofLevel = amountOfLevels;
         for (int level = 0; level <= amountOfLevels; level++) {
-            GenerateLevel(level, currentHigh);
-            float metricY = level == 0 ? Utiles.METRIC_LARGE_Y : Utiles.METRIC_Y; // The level 0 is higher than other levels
-            currentHigh += metricY;
+            GenerateLevel(level);
         }
 	}
-	
     // Generate the next piece according to its constraints:
 	private Piece FindNextPiece(List<Piece> _nextPieces, Piece _previousPiece = null) {
         List<Piece> authorizedPieces = new List<Piece>();
@@ -55,13 +53,14 @@ public class Building : MonoBehaviour {
     }
 
     // Generate a level:
-    private void GenerateLevel(int _levelIndex, float _high) {
+    private void GenerateLevel(int _levelIndex) {
+        float high = (_levelIndex == 0 ? 0 : 1) * Utiles.METRIC_LARGE_Y + (_levelIndex == 0 ? 0 : _levelIndex - 1) * Utiles.METRIC_Y;
         int doorColumnIndex = Random.Range(0, amountOfColumns + 1);
         Vector3 translationY;
         Vector3 translationX;
         Vector3 translationZ = Vector3.down; ; // Only for the backgrounds.
         Piece previousPiece = null;
-        translationY = Vector3.back * _high;
+        translationY = Vector3.back * high;
 
         // Corners:
         if (_levelIndex > 0 && _levelIndex < amountOfLevels) {
@@ -148,19 +147,25 @@ public class Building : MonoBehaviour {
                 Destroy(piece.gameObject);
             }
         }
-
-        // Move the roof:
-        MoveRoofToLevel(_levelIndex);
-
+        amountOfLevels--;
     }
 
     public void MoveRoofToLevel(int _levelIndex) {
         Vector3 translationY = Vector3.forward * Utiles.METRIC_Y;
-
+        int oldRoofLevel = roofLevel;
+        roofLevel = _levelIndex;
+        amountOfLevels++;
+        if (oldRoofLevel > _levelIndex) {
+            DeleteLevel(_levelIndex);
+        } else {
+            for(int i = oldRoofLevel; i < _levelIndex; i++) {
+                GenerateLevel(i);
+            }
+        }
         // We get all the children:
         Piece[] everyPieces = GetComponentsInChildren<Piece>();
 
-        // We delete the pieces from the list which are at the targeted level:
+        // We move the pieces from the list which are at the targeted level:
         List<Piece> piecesToMove = new List<Piece>(everyPieces);
         foreach (Piece piece in piecesToMove) {
             if (piece.isRoof) {
