@@ -14,12 +14,14 @@ public class BuildingGenerator : MonoBehaviour {
     public Piece cornerRightPrefab;
     public Piece doorPrefab;
     public List<Piece> balconyPrefabs = new List<Piece>();
+    public Piece groundwindow;
 
 
     void Start () {
         Vector3 translationY;
         Vector3 translationX;
         float currentHigh = 0;
+        int doorColumnIndex = Random.Range(0, amountOfColumns + 1);
         for (int level = 0; level <= amountOfLevels; level++) {
             Piece previousPiece = null;
             float metricY = level == 0 ? Utiles.METRIC_LARGE_Y : Utiles.METRIC_Y; // TODO: cleaner writing
@@ -45,8 +47,17 @@ public class BuildingGenerator : MonoBehaviour {
                 Piece piece = null;
                 // Ground level:
                 if(level == 0) {
-                    piece = Instantiate(doorPrefab, transform.position, transform.rotation) as Piece;
-                    name = "Door";
+                    // Door:
+                    if(column == doorColumnIndex) {
+                        piece = Instantiate(doorPrefab, transform.position, transform.rotation) as Piece;
+                        name = "Door";
+                    }
+                    // Ground Window:
+                    else {
+                        piece = Instantiate(groundwindow, transform.position, transform.rotation) as Piece;
+                        name = "GroundWindow";
+                    }
+                    
                 }
                 // Balcony:
                 else if (levelsWithBalconies.Contains(level)) {
@@ -77,7 +88,8 @@ public class BuildingGenerator : MonoBehaviour {
 
         // If there is not previous piece, it's free for all:
         if (_previousPiece == null) {
-            return _nextPieces[Random.Range(0, authorizedPieces.Count)];
+            int random = Random.Range(0, _nextPieces.Count);
+            return _nextPieces[random];
         }
         // Else, we search all the pieces matching with the previous one:
         foreach(Piece nextPiece in _nextPieces) {
