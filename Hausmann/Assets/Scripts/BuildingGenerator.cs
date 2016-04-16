@@ -14,7 +14,8 @@ public class BuildingGenerator : MonoBehaviour {
     public Piece cornerRightPrefab;
     public Piece doorPrefab;
     public List<Piece> balconyPrefabs = new List<Piece>();
-    public Piece groundwindow;
+    public Piece groundWindowPrefab;
+    public Piece roofPrefab;
 
 
     void Start () {
@@ -25,22 +26,23 @@ public class BuildingGenerator : MonoBehaviour {
         for (int level = 0; level <= amountOfLevels; level++) {
             Piece previousPiece = null;
             float metricY = level == 0 ? Utiles.METRIC_LARGE_Y : Utiles.METRIC_Y; // TODO: cleaner writing
-            
             translationY = Vector3.back * currentHigh;
-            // Corners
-            Piece cornerLeft = Instantiate(cornerLeftPrefab, transform.position, transform.rotation) as Piece;
-            cornerLeft.transform.parent = transform;
-            cornerLeft.transform.Translate(translationY);
-            cornerLeft.transform.Translate(Utiles.METRIC_X, 0, 0);
-            cornerLeft.name = "CornerLeftLevel" + level;
 
-            Piece cornerRight = Instantiate(cornerRightPrefab, transform.position, transform.rotation) as Piece;
-            cornerRight.transform.parent = transform;
-            cornerRight.transform.Translate(translationY);
-            cornerRight.transform.Translate(-(amountOfColumns+1) * Utiles.METRIC_X, 0, 0);
-            cornerRight.name = "CornerRightLevel" + level;
+            // Corners:
+            if (level > 0 && level < amountOfLevels) {
+                Piece cornerLeft = Instantiate(cornerLeftPrefab, transform.position, transform.rotation) as Piece;
+                cornerLeft.transform.parent = transform;
+                cornerLeft.transform.Translate(translationY);
+                cornerLeft.transform.Translate(Utiles.METRIC_X, 0, 0);
+                cornerLeft.name = "CornerLeftLevel" + level;
 
-            // Level building
+                Piece cornerRight = Instantiate(cornerRightPrefab, transform.position, transform.rotation) as Piece;
+                cornerRight.transform.parent = transform;
+                cornerRight.transform.Translate(translationY);
+                cornerRight.transform.Translate(-(amountOfColumns + 1) * Utiles.METRIC_X, 0, 0);
+                cornerRight.name = "CornerRightLevel" + level;
+            }
+            // Main building:
             for (int column = 0; column <= amountOfColumns; column++) {
                 translationX = Vector3.left * column * Utiles.METRIC_X;
                 string name = string.Empty;
@@ -54,10 +56,15 @@ public class BuildingGenerator : MonoBehaviour {
                     }
                     // Ground Window:
                     else {
-                        piece = Instantiate(groundwindow, transform.position, transform.rotation) as Piece;
+                        piece = Instantiate(groundWindowPrefab, transform.position, transform.rotation) as Piece;
                         name = "GroundWindow";
                     }
                     
+                }
+                // Roof level:
+                else if(level == amountOfLevels) {
+                    piece = Instantiate(roofPrefab, transform.position, transform.rotation) as Piece;
+                    name = "Roof";
                 }
                 // Balcony:
                 else if (levelsWithBalconies.Contains(level)) {
