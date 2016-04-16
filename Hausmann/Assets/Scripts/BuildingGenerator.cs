@@ -13,7 +13,6 @@ public class BuildingGenerator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Vector3 initialPosition = transform.position;
 	    for(int level = 0; level < numberOfLevels; level++) {
             // Corners
             GameObject cornerLeft = Instantiate(cornerLeftPrefab, transform.position, transform.rotation) as GameObject;

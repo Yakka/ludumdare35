@@ -8,8 +8,8 @@ public class Piece : MonoBehaviour {
 
     public enum Constraint {
         None = 0,
-        CornerLeft,
-        CornerRight,
+        Balcony1,
+        Balcony2,
         NumberOfConstraints
     }
 
@@ -20,6 +20,10 @@ public class Piece : MonoBehaviour {
 
     public void Start() {
         GetComponent<Renderer>().material = materials[Random.Range(0, materials.Count)];
+
+        if(constraints.Count == 0) {
+            constraints.Add(Constraint.None);
+        }
     }
 
     // Checks if a list of constraints match with this object's constraints
@@ -27,7 +31,7 @@ public class Piece : MonoBehaviour {
         bool isMatching = true;
         foreach(Constraint constraintToCompare in _constraintsToCompare) {
             foreach(Constraint constraint in constraints) {
-                isMatching = IsMatching(constraint, constraintToCompare);
+                isMatching = IsMatching(constraint, constraintToCompare) & IsMatching(constraintToCompare, constraint);
                 if(!isMatching) {
                     break;
                 }
@@ -45,22 +49,20 @@ public class Piece : MonoBehaviour {
         bool isMatching = true;
         // Switch of hell
         switch(_constraint1) {
-            // CornerLeft:
-            case Constraint.CornerLeft:
-                switch(_constraint2) {
-                    case Constraint.CornerLeft:
-                        isMatching = false;
-                        break;
+            // Balcony1:
+            case Constraint.Balcony1:
+                if(_constraint2 != Constraint.Balcony1) {
+                    isMatching = false;
                 }
                 break;
-
-            // CornerRight:
-            case Constraint.CornerRight:
-                switch (_constraint2) {
-                    case Constraint.CornerRight:
-                        isMatching = false;
-                        break;
+            // Balcony2:
+            case Constraint.Balcony2:
+                if (_constraint2 != Constraint.Balcony2) {
+                    isMatching = false;
                 }
+                break;
+            // None:
+            case Constraint.None:
                 break;
             default:
                 break;
