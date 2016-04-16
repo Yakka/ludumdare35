@@ -8,8 +8,8 @@ public class Piece : MonoBehaviour {
 
     public enum Constraint {
         None = 0,
-        Bottom,
-        Top,
+        CornerLeft,
+        CornerRight,
         NumberOfConstraints
     }
 
@@ -45,19 +45,19 @@ public class Piece : MonoBehaviour {
         bool isMatching = true;
         // Switch of hell
         switch(_constraint1) {
-            // Bottom:
-            case Constraint.Bottom:
+            // CornerLeft:
+            case Constraint.CornerLeft:
                 switch(_constraint2) {
-                    case Constraint.Bottom:
+                    case Constraint.CornerLeft:
                         isMatching = false;
                         break;
                 }
                 break;
 
-            // Top:
-            case Constraint.Top:
+            // CornerRight:
+            case Constraint.CornerRight:
                 switch (_constraint2) {
-                    case Constraint.Top:
+                    case Constraint.CornerRight:
                         isMatching = false;
                         break;
                 }
