@@ -16,18 +16,21 @@ public class BuildingGenerator : MonoBehaviour {
     public List<Piece> balconyPrefabs = new List<Piece>();
     public Piece groundWindowPrefab;
     public Piece roofPrefab;
-
+    public Piece backgroundPrefab;
+    public Piece groundBackgroundPrefab;
+    public Piece roofBackgroundPrefab;
 
     void Start () {
         Vector3 translationY;
         Vector3 translationX;
+        Vector3 translationZ = Vector3.down; ; // Only for the backgrounds.
         float currentHigh = 0;
         int doorColumnIndex = Random.Range(0, amountOfColumns + 1);
         for (int level = 0; level <= amountOfLevels; level++) {
             Piece previousPiece = null;
-            float metricY = level == 0 ? Utiles.METRIC_LARGE_Y : Utiles.METRIC_Y; // TODO: cleaner writing
+            float metricY = level == 0 ? Utiles.METRIC_LARGE_Y : Utiles.METRIC_Y; // The level 0 is higher than other levels
             translationY = Vector3.back * currentHigh;
-
+            
             // Corners:
             if (level > 0 && level < amountOfLevels) {
                 Piece cornerLeft = Instantiate(cornerLeftPrefab, transform.position, transform.rotation) as Piece;
@@ -80,6 +83,19 @@ public class BuildingGenerator : MonoBehaviour {
                 piece.transform.Translate(translationX + translationY);
                 piece.name = name + column + "Level" + level;
                 previousPiece = piece;
+                // Background:
+                if(level == 0) {
+                    piece = Instantiate(groundBackgroundPrefab, previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
+                    piece.name = previousPiece.name + "GroundBackground";
+                } else if (level == amountOfLevels) {
+                    piece = Instantiate(roofBackgroundPrefab, previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
+                    piece.name = previousPiece.name + "RoofBackground";
+                } else {
+                    piece = Instantiate(backgroundPrefab, previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
+                    piece.name = previousPiece.name + "Background";
+                }
+                piece.transform.parent = previousPiece.transform;
+                piece.transform.Translate(translationZ);
             }
             currentHigh += metricY;
         }
