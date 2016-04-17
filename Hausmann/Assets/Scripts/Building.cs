@@ -21,6 +21,7 @@ public class Building : MonoBehaviour {
     public List<Piece> roofBackgroundPrefabs = new List<Piece>();
 
     private int roofLevel;
+    private bool hasPlants = false;
 
     void Start () {
         roofLevel = amountOfLevels;
@@ -189,4 +190,15 @@ public class Building : MonoBehaviour {
             piece.RemovePlants();
         }
     }
+
+    public void SwitchPlants() {
+        if (hasPlants) {
+            RemovePlants();
+        }
+        else {
+            AddPlants();
+        }
+        hasPlants = !hasPlants;
+    }
+
 }
