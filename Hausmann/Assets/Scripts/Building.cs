@@ -55,7 +55,7 @@ public class Building : MonoBehaviour {
     // Generate a level:
     private void GenerateLevel(int _levelIndex) {
         float high = (_levelIndex == 0 ? 0 : 1) * Utiles.METRIC_LARGE_Y + (_levelIndex == 0 ? 0 : _levelIndex - 1) * Utiles.METRIC_Y;
-        int doorColumnIndex = Random.Range(0, amountOfColumns + 1);
+        int doorColumnIndex = Random.Range(0, amountOfColumns);
         Vector3 translationY;
         Vector3 translationX;
         Vector3 translationZ = Vector3.down; ; // Only for the backgrounds.
@@ -74,12 +74,12 @@ public class Building : MonoBehaviour {
             Piece cornerRight = Instantiate(cornerRightPrefab, transform.position, transform.rotation) as Piece;
             cornerRight.transform.parent = transform;
             cornerRight.transform.Translate(translationY);
-            cornerRight.transform.Translate(-(amountOfColumns + 1) * Utiles.METRIC_X, 0, 0);
+            cornerRight.transform.Translate(-amountOfColumns * Utiles.METRIC_X, 0, 0);
             cornerRight.name = "CornerRightLevel" + _levelIndex;
             cornerRight.level = _levelIndex;
         }
         // Main building:
-        for (int column = 0; column <= amountOfColumns; column++) {
+        for (int column = 0; column < amountOfColumns; column++) {
             translationX = Vector3.left * column * Utiles.METRIC_X;
             string name = string.Empty;
             Piece piece = null;
