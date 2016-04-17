@@ -19,11 +19,19 @@ public class Piece : MonoBehaviour {
     [HideInInspector]
     public int level = 0;
 
-    public void Start() {
-        GetComponent<Renderer>().material = materials[Random.Range(0, materials.Count)];
-
-        if(constraints.Count == 0) {
+    public void Awake() {
+        SetMaterial(Random.Range(0, materials.Count));
+        if (constraints.Count == 0) {
             constraints.Add(Constraint.None);
+        }
+    }
+
+    public void SetMaterial(int _index) {
+        if(_index < materials.Count) {
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.material = materials[_index];
+        } else {
+            Debug.LogError("Piece.SetMaterial: _index is out of range of materials.");
         }
     }
 

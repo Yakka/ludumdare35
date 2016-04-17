@@ -16,7 +16,7 @@ public class Building : MonoBehaviour {
     public List<Piece> balconyPrefabs = new List<Piece>();
     public Piece groundWindowPrefab;
     public Piece roofPrefab;
-    public Piece backgroundPrefab;
+    public List<Piece> backgroundPrefabs = new List<Piece>();
     public Piece groundBackgroundPrefab;
     public Piece roofBackgroundPrefab;
 
@@ -127,11 +127,12 @@ public class Building : MonoBehaviour {
                 piece.name = previousPiece.name + "RoofBackground";
             }
             else {
-                piece = Instantiate(backgroundPrefab, previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
+                piece = Instantiate(backgroundPrefabs[Random.Range(0, backgroundPrefabs.Count)], previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
                 piece.name = previousPiece.name + "Background";
             }
             piece.transform.parent = previousPiece.transform;
             piece.transform.Translate(translationZ);
+            piece.SetMaterial(0);
         }
 
     }

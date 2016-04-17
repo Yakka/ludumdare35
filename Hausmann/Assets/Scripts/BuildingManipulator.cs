@@ -37,6 +37,7 @@ public class BuildingManipulator : MonoBehaviour {
             } else { // Test if the player is on the roof:
                 Cursor.SetCursor(standardCursor.holden, Vector2.zero, CursorMode.ForceSoftware);
                 if (piece != null && piece.isRoof) {
+                    Cursor.SetCursor(dragDropCursor.holden, Vector2.zero, CursorMode.ForceSoftware);
                     holdingRoof = true;
                     roofLevel = piece.level;
                     grabbedBuilding = piece.GetComponentInParent<Building>();
