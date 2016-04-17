@@ -21,4 +21,9 @@ public class CustomButton : MonoBehaviour {
         }
         hasSwapped = !hasSwapped;
     }
+
+    public void CleanButton() {
+        canvas.SetTexture(texture1);
+        hasSwapped = false;
+    }
 }

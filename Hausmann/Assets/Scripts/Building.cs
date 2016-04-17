@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Building : MonoBehaviour {
-    
+
     public int amountOfLevels;
     public int amountOfColumns;
 
@@ -24,11 +24,20 @@ public class Building : MonoBehaviour {
     private bool hasPlants = false;
 
     void Start () {
+        BuildTheBuilding();
+
+    }
+
+    public void BuildTheBuilding() {
+        DestroyEverything();
+        hasPlants = false;
+        amountOfLevels = Random.Range(1,7);
         roofLevel = amountOfLevels;
         for (int level = 0; level <= amountOfLevels; level++) {
             GenerateLevel(level);
         }
-	}
+    }
+
     // Generate the next piece according to its constraints:
 	private Piece FindNextPiece(List<Piece> _nextPieces, Piece _previousPiece = null) {
         List<Piece> authorizedPieces = new List<Piece>();
@@ -188,6 +197,13 @@ public class Building : MonoBehaviour {
         Piece[] pieces = GetComponentsInChildren<Piece>();
         foreach (Piece piece in pieces) {
             piece.RemovePlants();
+        }
+    }
+
+    public void DestroyEverything() {
+        Piece[] pieces = GetComponentsInChildren<Piece>();
+        foreach (Piece piece in pieces) {
+            Destroy(piece.gameObject);
         }
     }
 

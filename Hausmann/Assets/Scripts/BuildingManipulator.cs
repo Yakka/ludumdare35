@@ -29,7 +29,7 @@ public class BuildingManipulator : MonoBehaviour {
                     roofLevel--;
                 } 
                 // Moving up:
-                else if (piece == null && lastMousePosition.y < Input.mousePosition.y) {
+                else if (piece == null && lastMousePosition.y < Input.mousePosition.y && roofLevel < 6) {
                     grabbedBuilding.MoveRoofToLevel(roofLevel+1);
                     roofLevel++;
                     lastMousePosition = Input.mousePosition;
