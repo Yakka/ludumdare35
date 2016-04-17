@@ -17,7 +17,7 @@ public class Building : MonoBehaviour {
     public Piece groundWindowPrefab;
     public Piece roofPrefab;
     public List<Piece> backgroundPrefabs = new List<Piece>();
-    public Piece groundBackgroundPrefab;
+    public List<Piece> groundBackgroundPrefabs = new List<Piece>();
     public List<Piece> roofBackgroundPrefabs = new List<Piece>();
 
     private int roofLevel;
@@ -119,7 +119,7 @@ public class Building : MonoBehaviour {
             previousPiece = piece;
             // Background:
             if (_levelIndex == 0) {
-                piece = Instantiate(groundBackgroundPrefab, previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
+                piece = Instantiate(groundBackgroundPrefabs[Random.Range(0, backgroundPrefabs.Count)], previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
                 piece.name = previousPiece.name + "GroundBackground";
             }
             else if (_levelIndex == amountOfLevels) {
