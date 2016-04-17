@@ -60,9 +60,8 @@ public class BuildingManipulator : MonoBehaviour {
 
     private Piece RaycastMouseToPiece() {
         Piece piece = null;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)) {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (hit.collider != null) {
             piece = hit.transform.gameObject.GetComponent<Piece>();
         }
         return piece;
