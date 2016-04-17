@@ -1,0 +1,119 @@
+fileFormatVersion: 2
+guid: 2fbbad28003f6fb4ea03135c513c7225
+timeCreated: 1460922087
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: cat1_spritesheet_0
+    21300002: cat1_spritesheet_1
+    21300004: cat1_spritesheet_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: cat1_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17, y: -3}
+        - {x: 1, y: -3}
+        - {x: -27, y: -42}
+        - {x: -35, y: -75}
+        - {x: -35, y: -95}
+        - {x: -16, y: -95}
+        - {x: 14, y: -66}
+        - {x: 19, y: -48}
+        - {x: 19, y: -6}
+    - name: cat1_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: -3}
+        - {x: -20, y: -36}
+        - {x: -20, y: -75}
+        - {x: -18, y: -90}
+        - {x: -11, y: -93}
+        - {x: 6, y: -93}
+        - {x: 19, y: -70}
+        - {x: 19, y: -3}
+    - name: cat1_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: -3}
+        - {x: -20, y: -37}
+        - {x: -20, y: -54}
+        - {x: -7, y: -72}
+        - {x: 4, y: -85}
+        - {x: 19, y: -85}
+        - {x: 25, y: -82}
+        - {x: 25, y: -28}
+        - {x: 20, y: -3}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

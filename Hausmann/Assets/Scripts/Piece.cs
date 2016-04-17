@@ -6,9 +6,9 @@ using System.Collections.Generic;
 // Pieces obey to constraints.
 public class Piece : MonoBehaviour {
     [System.Serializable]
-    public class Materials {
-        public Material mainMaterial = null;
-        public List<Material> plantMaterials = new List<Material>();
+    public class Textures {
+        public Sprite mainTexture = null;
+        public List<Sprite> plantTextures = new List<Sprite>();
     }
 
     public enum Constraint {
@@ -17,35 +17,36 @@ public class Piece : MonoBehaviour {
         Balcony2,
         Background,
         Plantable,
+        Animal,
         AmountOfConstraints
     }
 
     public List<Constraint> constraints = new List<Constraint>();
-    public List<Materials> materials = new List<Materials>();
+    public List<Textures> textures = new List<Textures>();
     public bool isRoof = false;
-    private int materialIndex = 0;
+    private int textureIndex = 0;
     [HideInInspector]
     public int level = 0;
     private float probabilitySwitchBackground = 1f;
-    private float changeMaterialCooldown;
-    private const float CHANGE_MATERIAL_COOLDOWN = 20f;
+    private float changeTextureCooldown;
+    private const float CHANGE_TEXTURE_COOLDOWN = 20f;
 
     public void Awake() {
-        materialIndex = Random.Range(0, materials.Count);
-        SetMaterial(materialIndex);
+        textureIndex = Random.Range(0, textures.Count);
+        SetTexture(textureIndex);
         if (constraints.Count == 0) {
             constraints.Add(Constraint.None);
         }
-        changeMaterialCooldown = Random.Range(0f, CHANGE_MATERIAL_COOLDOWN);
+        changeTextureCooldown = Random.Range(0f, CHANGE_TEXTURE_COOLDOWN);
     }
 
-    public void SetMaterial(int _index) {
-        if(_index < materials.Count) {
-            Renderer renderer = GetComponent<Renderer>();
-            renderer.material = materials[_index].mainMaterial;
-            materialIndex = _index;
+    public void SetTexture(int _index) {
+        if(_index < textures.Count) {
+            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+            renderer.sprite = textures[_index].mainTexture;
+            textureIndex = _index;
         } else {
-            Debug.LogError("Piece.SetMaterial: _index is out of range of materials.");
+            Debug.LogError("Piece.SetTexture: _index is out of range of textures.");
         }
     }
 
@@ -100,27 +101,27 @@ public class Piece : MonoBehaviour {
 
     public void Update() {
         if(constraints.Contains(Constraint.Background)) {
-            if(Random.Range(0f, 1f) < probabilitySwitchBackground * Time.deltaTime && changeMaterialCooldown <= 0) {
-                changeMaterialCooldown = CHANGE_MATERIAL_COOLDOWN;
-                materialIndex = materialIndex == 0 ? 1 : 0; // Swap
-                SetMaterial(materialIndex);
+            if(Random.Range(0f, 1f) < probabilitySwitchBackground * Time.deltaTime && changeTextureCooldown <= 0) {
+                changeTextureCooldown = CHANGE_TEXTURE_COOLDOWN;
+                textureIndex = textureIndex == 0 ? 1 : 0; // Swap
+                SetTexture(textureIndex);
             } else {
-                changeMaterialCooldown -= Time.deltaTime;
+                changeTextureCooldown -= Time.deltaTime;
             }
         }
     }
 
     public void AddPlants() {
-        if (materials[materialIndex].plantMaterials.Count != 0 && constraints.Contains(Constraint.Plantable)) {
-            Renderer renderer = GetComponent<Renderer>();
-            renderer.material = materials[materialIndex].plantMaterials[Random.Range(0, materials[materialIndex].plantMaterials.Count)];
+        if (textures[textureIndex].plantTextures.Count != 0 && constraints.Contains(Constraint.Plantable)) {
+            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+            renderer.sprite = textures[textureIndex].plantTextures[Random.Range(0, textures[textureIndex].plantTextures.Count)];
         }
     }
 
     public void RemovePlants() {
         if (constraints.Contains(Constraint.Plantable)) {
-            Renderer renderer = GetComponent<Renderer>();
-            renderer.material = materials[materialIndex].mainMaterial;
+            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+            renderer.sprite = textures[textureIndex].mainTexture;
         }
     }
 

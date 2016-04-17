@@ -68,29 +68,28 @@ public class Building : MonoBehaviour {
         int doorColumnIndex = Random.Range(0, amountOfColumns);
         Vector3 translationY;
         Vector3 translationX;
-        Vector3 translationZ = Vector3.down; ; // Only for the backgrounds.
         Piece previousPiece = null;
-        translationY = Vector3.back * high;
+        translationY = Vector3.up * high;
 
         // Corners:
         if (_levelIndex > 0 && _levelIndex < amountOfLevels) {
             Piece cornerLeft = Instantiate(cornerLeftPrefab, transform.position, transform.rotation) as Piece;
             cornerLeft.transform.parent = transform;
             cornerLeft.transform.Translate(translationY);
-            cornerLeft.transform.Translate(Utiles.METRIC_X, 0, 0);
+            cornerLeft.transform.Translate(-Utiles.METRIC_X, 0, 0);
             cornerLeft.name = "CornerLeftLevel" + _levelIndex;
             cornerLeft.level = _levelIndex;
 
             Piece cornerRight = Instantiate(cornerRightPrefab, transform.position, transform.rotation) as Piece;
             cornerRight.transform.parent = transform;
             cornerRight.transform.Translate(translationY);
-            cornerRight.transform.Translate(-amountOfColumns * Utiles.METRIC_X, 0, 0);
+            cornerRight.transform.Translate(amountOfColumns * Utiles.METRIC_X, 0, 0);
             cornerRight.name = "CornerRightLevel" + _levelIndex;
             cornerRight.level = _levelIndex;
         }
         // Main building:
         for (int column = 0; column < amountOfColumns; column++) {
-            translationX = Vector3.left * column * Utiles.METRIC_X;
+            translationX = Vector3.right * column * Utiles.METRIC_X;
             string name = string.Empty;
             Piece piece = null;
             // Ground level:
@@ -129,11 +128,11 @@ public class Building : MonoBehaviour {
             previousPiece = piece;
             // Background:
             if (_levelIndex == 0) {
-                piece = Instantiate(groundBackgroundPrefabs[Random.Range(0, backgroundPrefabs.Count)], previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
+                piece = Instantiate(groundBackgroundPrefabs[Random.Range(0, groundBackgroundPrefabs.Count)], previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
                 piece.name = previousPiece.name + "GroundBackground";
             }
             else if (_levelIndex == amountOfLevels) {
-                piece = Instantiate(roofBackgroundPrefabs[Random.Range(0, backgroundPrefabs.Count)], previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
+                piece = Instantiate(roofBackgroundPrefabs[Random.Range(0, roofBackgroundPrefabs.Count)], previousPiece.transform.position, previousPiece.transform.rotation) as Piece;
                 piece.name = previousPiece.name + "RoofBackground";
             }
             else {
@@ -141,8 +140,7 @@ public class Building : MonoBehaviour {
                 piece.name = previousPiece.name + "Background";
             }
             piece.transform.parent = previousPiece.transform;
-            piece.transform.Translate(translationZ);
-            piece.SetMaterial(0);
+            piece.SetTexture(0);
         }
 
     }
