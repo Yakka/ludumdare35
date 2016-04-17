@@ -10,6 +10,7 @@ public class Piece : MonoBehaviour {
         None = 0,
         Balcony1,
         Balcony2,
+        Background,
         AmountOfConstraints
     }
 
@@ -18,12 +19,16 @@ public class Piece : MonoBehaviour {
     public bool isRoof = false;
     [HideInInspector]
     public int level = 0;
+    private float probabilitySwitchBackground = 1f;
+    private float changeMaterialCooldown;
+    private const float CHANGE_MATERIAL_COOLDOWN = 20f;
 
     public void Awake() {
         SetMaterial(Random.Range(0, materials.Count));
         if (constraints.Count == 0) {
             constraints.Add(Constraint.None);
         }
+        changeMaterialCooldown = Random.Range(0f, CHANGE_MATERIAL_COOLDOWN);
     }
 
     public void SetMaterial(int _index) {
@@ -82,6 +87,22 @@ public class Piece : MonoBehaviour {
         }
 
         return isMatching;
+    }
+
+    public void Update() {
+        if(constraints.Contains(Constraint.Background)) {
+            if(Random.Range(0f, 1f) < probabilitySwitchBackground * Time.deltaTime && changeMaterialCooldown <= 0) {
+                changeMaterialCooldown = CHANGE_MATERIAL_COOLDOWN;
+                Renderer renderer = GetComponent<Renderer>();
+                if(renderer.sharedMaterial == materials[0]) {
+                    SetMaterial(1);
+                } else {
+                    SetMaterial(0);
+                }
+            } else {
+                changeMaterialCooldown -= Time.deltaTime;
+            }
+        }
     }
 
 
