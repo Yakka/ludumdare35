@@ -160,10 +160,10 @@ public class Building : MonoBehaviour {
     }
 
     public void MoveRoofToLevel(int _levelIndex) {
-        Vector3 translationY = Vector3.forward * Utiles.METRIC_Y;
+        Vector3 translationY = Vector3.up * Utiles.METRIC_Y;
         int oldRoofLevel = roofLevel;
         roofLevel = _levelIndex;
-        amountOfLevels++;
+        amountOfLevels = roofLevel;
         if (oldRoofLevel > _levelIndex) {
             DeleteLevel(_levelIndex);
         } else {
@@ -178,7 +178,7 @@ public class Building : MonoBehaviour {
         List<Piece> piecesToMove = new List<Piece>(everyPieces);
         foreach (Piece piece in piecesToMove) {
             if (piece.isRoof) {
-                piece.transform.Translate(translationY * (piece.level - _levelIndex));
+                piece.transform.Translate(translationY * (_levelIndex - piece.level));
                 piece.level = _levelIndex;
             }
         }
