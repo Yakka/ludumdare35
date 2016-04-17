@@ -16,12 +16,14 @@ public class Piece : MonoBehaviour {
         Balcony1,
         Balcony2,
         Background,
+        Plantable,
         AmountOfConstraints
     }
 
     public List<Constraint> constraints = new List<Constraint>();
     public List<Materials> materials = new List<Materials>();
     public bool isRoof = false;
+    private int materialIndex = 0;
     [HideInInspector]
     public int level = 0;
     private float probabilitySwitchBackground = 1f;
@@ -29,7 +31,8 @@ public class Piece : MonoBehaviour {
     private const float CHANGE_MATERIAL_COOLDOWN = 20f;
 
     public void Awake() {
-        SetMaterial(Random.Range(0, materials.Count));
+        materialIndex = Random.Range(0, materials.Count);
+        SetMaterial(materialIndex);
         if (constraints.Count == 0) {
             constraints.Add(Constraint.None);
         }
@@ -40,6 +43,7 @@ public class Piece : MonoBehaviour {
         if(_index < materials.Count) {
             Renderer renderer = GetComponent<Renderer>();
             renderer.material = materials[_index].mainMaterial;
+            materialIndex = _index;
         } else {
             Debug.LogError("Piece.SetMaterial: _index is out of range of materials.");
         }
@@ -74,13 +78,13 @@ public class Piece : MonoBehaviour {
         switch(_constraint1) {
             // Balcony1:
             case Constraint.Balcony1:
-                if(_constraint2 != Constraint.Balcony1) {
+                if(_constraint2 == Constraint.Balcony2) {
                     isMatching = false;
                 }
                 break;
             // Balcony2:
             case Constraint.Balcony2:
-                if (_constraint2 != Constraint.Balcony2) {
+                if (_constraint2 == Constraint.Balcony1) {
                     isMatching = false;
                 }
                 break;
@@ -98,15 +102,25 @@ public class Piece : MonoBehaviour {
         if(constraints.Contains(Constraint.Background)) {
             if(Random.Range(0f, 1f) < probabilitySwitchBackground * Time.deltaTime && changeMaterialCooldown <= 0) {
                 changeMaterialCooldown = CHANGE_MATERIAL_COOLDOWN;
-                Renderer renderer = GetComponent<Renderer>();
-                if(renderer.sharedMaterial == materials[0].mainMaterial) {
-                    SetMaterial(1);
-                } else {
-                    SetMaterial(0);
-                }
+                materialIndex = materialIndex == 0 ? 1 : 0; // Swap
+                SetMaterial(materialIndex);
             } else {
                 changeMaterialCooldown -= Time.deltaTime;
             }
+        }
+    }
+
+    public void AddPlants() {
+        if (materials[materialIndex].plantMaterials.Count != 0 && constraints.Contains(Constraint.Plantable)) {
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.material = materials[materialIndex].plantMaterials[Random.Range(0, materials[materialIndex].plantMaterials.Count)];
+        }
+    }
+
+    public void RemovePlants() {
+        if (constraints.Contains(Constraint.Plantable)) {
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.material = materials[materialIndex].mainMaterial;
         }
     }
 

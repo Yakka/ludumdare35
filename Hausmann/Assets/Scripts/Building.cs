@@ -175,4 +175,18 @@ public class Building : MonoBehaviour {
             }
         }
     }
+
+    public void AddPlants() {
+        Piece[] pieces = GetComponentsInChildren<Piece>();
+        foreach(Piece piece in pieces) {
+            piece.AddPlants();
+        }
+    }
+
+    public void RemovePlants() {
+        Piece[] pieces = GetComponentsInChildren<Piece>();
+        foreach (Piece piece in pieces) {
+            piece.RemovePlants();
+        }
+    }
 }
