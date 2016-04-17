@@ -5,6 +5,11 @@ using System.Collections.Generic;
 // A piece of a building.
 // Pieces obey to constraints.
 public class Piece : MonoBehaviour {
+    [System.Serializable]
+    public class Materials {
+        public Material mainMaterial = null;
+        public List<Material> plantMaterials = new List<Material>();
+    }
 
     public enum Constraint {
         None = 0,
@@ -15,7 +20,7 @@ public class Piece : MonoBehaviour {
     }
 
     public List<Constraint> constraints = new List<Constraint>();
-    public List<Material> materials = new List<Material>();
+    public List<Materials> materials = new List<Materials>();
     public bool isRoof = false;
     [HideInInspector]
     public int level = 0;
@@ -34,7 +39,7 @@ public class Piece : MonoBehaviour {
     public void SetMaterial(int _index) {
         if(_index < materials.Count) {
             Renderer renderer = GetComponent<Renderer>();
-            renderer.material = materials[_index];
+            renderer.material = materials[_index].mainMaterial;
         } else {
             Debug.LogError("Piece.SetMaterial: _index is out of range of materials.");
         }
@@ -94,7 +99,7 @@ public class Piece : MonoBehaviour {
             if(Random.Range(0f, 1f) < probabilitySwitchBackground * Time.deltaTime && changeMaterialCooldown <= 0) {
                 changeMaterialCooldown = CHANGE_MATERIAL_COOLDOWN;
                 Renderer renderer = GetComponent<Renderer>();
-                if(renderer.sharedMaterial == materials[0]) {
+                if(renderer.sharedMaterial == materials[0].mainMaterial) {
                     SetMaterial(1);
                 } else {
                     SetMaterial(0);
