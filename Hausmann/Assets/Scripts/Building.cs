@@ -16,6 +16,7 @@ public class Building : MonoBehaviour {
     public List<Piece> balconyPrefabs = new List<Piece>();
     public Piece groundWindowPrefab;
     public Piece roofPrefab;
+    public Piece catPrefab;
     public List<Piece> backgroundPrefabs = new List<Piece>();
     public List<Piece> groundBackgroundPrefabs = new List<Piece>();
     public List<Piece> roofBackgroundPrefabs = new List<Piece>();
@@ -115,6 +116,12 @@ public class Building : MonoBehaviour {
             else if (levelsWithBalconies.Contains(_levelIndex)) {
                 piece = Instantiate(FindNextPiece(balconyPrefabs, previousPiece), transform.position, transform.rotation) as Piece;
                 name = "Balcony";
+
+                //TEMP CAT
+                Piece cat = Instantiate(catPrefab, transform.position, transform.rotation) as Piece;
+                cat.transform.parent = transform;
+                cat.transform.Translate(translationX + translationY);
+                cat.SetTexture(0);
             }
             // Windows:
             else {

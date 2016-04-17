@@ -38,6 +38,7 @@ public class Piece : MonoBehaviour {
             constraints.Add(Constraint.None);
         }
         changeTextureCooldown = Random.Range(0f, CHANGE_TEXTURE_COOLDOWN);
+        // TODO: Random offset in the animation
     }
 
     public void SetTexture(int _index) {

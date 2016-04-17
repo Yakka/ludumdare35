@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2fbbad28003f6fb4ea03135c513c7225
-timeCreated: 1460922087
+timeCreated: 1460933621
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -60,19 +60,19 @@ TextureImporter:
         y: 0
         width: 200
         height: 300
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 17, y: -3}
-        - {x: 1, y: -3}
-        - {x: -27, y: -42}
-        - {x: -35, y: -75}
-        - {x: -35, y: -95}
-        - {x: -16, y: -95}
-        - {x: 14, y: -66}
-        - {x: 19, y: -48}
-        - {x: 19, y: -6}
+      - - {x: 17, y: 147}
+        - {x: 1, y: 147}
+        - {x: -27, y: 108}
+        - {x: -35, y: 75}
+        - {x: -35, y: 55}
+        - {x: -16, y: 55}
+        - {x: 14, y: 84}
+        - {x: 19, y: 102}
+        - {x: 19, y: 144}
     - name: cat1_spritesheet_1
       rect:
         serializedVersion: 2
@@ -80,18 +80,18 @@ TextureImporter:
         y: 0
         width: 200
         height: 300
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1, y: -3}
-        - {x: -20, y: -36}
-        - {x: -20, y: -75}
-        - {x: -18, y: -90}
-        - {x: -11, y: -93}
-        - {x: 6, y: -93}
-        - {x: 19, y: -70}
-        - {x: 19, y: -3}
+      - - {x: 1, y: 147}
+        - {x: -20, y: 114}
+        - {x: -20, y: 75}
+        - {x: -18, y: 60}
+        - {x: -11, y: 57}
+        - {x: 6, y: 57}
+        - {x: 19, y: 80}
+        - {x: 19, y: 147}
     - name: cat1_spritesheet_2
       rect:
         serializedVersion: 2
@@ -99,19 +99,19 @@ TextureImporter:
         y: 0
         width: 200
         height: 300
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3, y: -3}
-        - {x: -20, y: -37}
-        - {x: -20, y: -54}
-        - {x: -7, y: -72}
-        - {x: 4, y: -85}
-        - {x: 19, y: -85}
-        - {x: 25, y: -82}
-        - {x: 25, y: -28}
-        - {x: 20, y: -3}
+      - - {x: -3, y: 147}
+        - {x: -20, y: 113}
+        - {x: -20, y: 96}
+        - {x: -7, y: 78}
+        - {x: 4, y: 65}
+        - {x: 19, y: 65}
+        - {x: 25, y: 68}
+        - {x: 25, y: 122}
+        - {x: 20, y: 147}
     outline: []
   spritePackingTag: 
   userData: 
