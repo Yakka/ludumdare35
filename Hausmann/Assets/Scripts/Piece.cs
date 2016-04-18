@@ -19,6 +19,7 @@ public class Piece : MonoBehaviour {
         Background,
         Plantable,
         Animal,
+        Window,
         AmountOfConstraints
     }
 
@@ -128,13 +129,11 @@ public class Piece : MonoBehaviour {
     }
 
     public void AddCat(Piece _catPrefab) {
-        if(constraints.Contains(Constraint.Balcony)) {
-            Piece cat = Instantiate(_catPrefab, transform.position, transform.rotation) as Piece;
-            SpriteRenderer renderer = cat.GetComponent<SpriteRenderer>();
-            renderer.sprite = cat.textures[0].mainTexture;
-            cat.transform.parent = transform;
-            cat.SetTexture(0);
-            cat.name = "Cat";
-        }
+        Piece cat = Instantiate(_catPrefab, transform.position, transform.rotation) as Piece;
+        SpriteRenderer renderer = cat.GetComponent<SpriteRenderer>();
+        renderer.sprite = cat.textures[0].mainTexture;
+        cat.transform.parent = transform;
+        cat.SetTexture(0);
+        cat.name = "Cat";
     }
 }
