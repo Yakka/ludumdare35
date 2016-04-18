@@ -17,6 +17,7 @@ public class Building : MonoBehaviour {
     public Piece groundWindowPrefab;
     public Piece roofPrefab;
     public List<Piece> balconyBirdPrefabs = new List<Piece>();
+    public List<Piece> roofBirdPrefabs = new List<Piece>();
     public List<Piece> balconyCatPrefabs = new List<Piece>();
     public List<Piece> windowCatPrefabs = new List<Piece>();
     public List<Piece> windowGridCatPrefabs = new List<Piece>();
@@ -263,6 +264,9 @@ public class Building : MonoBehaviour {
             if (Random.Range(0, 10) >= 5) {
                 if (piece.constraints.Contains(Piece.Constraint.Balcony)) {
                     piece.AddBird(balconyBirdPrefabs[Random.Range(0, balconyBirdPrefabs.Count)]);
+                }
+                if (piece.constraints.Contains(Piece.Constraint.Roof)) {
+                    piece.AddBird(roofBirdPrefabs[Random.Range(0, roofBirdPrefabs.Count)]);
                 }
             }
         }

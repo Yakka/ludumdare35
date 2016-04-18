@@ -22,6 +22,7 @@ public class Piece : MonoBehaviour {
         Window,
         WindowGrid,
         Bird,
+        Roof,
         AmountOfConstraints
     }
 
