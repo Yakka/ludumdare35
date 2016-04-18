@@ -16,6 +16,7 @@ public class Building : MonoBehaviour {
     public List<Piece> balconyPrefabs = new List<Piece>();
     public Piece groundWindowPrefab;
     public Piece roofPrefab;
+    public List<Piece> balconyBirdPrefabs = new List<Piece>();
     public List<Piece> balconyCatPrefabs = new List<Piece>();
     public List<Piece> windowCatPrefabs = new List<Piece>();
     public List<Piece> windowGridCatPrefabs = new List<Piece>();
@@ -35,6 +36,7 @@ public class Building : MonoBehaviour {
     public void BuildTheBuilding() {
         DestroyEverything();
         hasPlants = false;
+        hasCats = false;
         amountOfLevels = Random.Range(1,7);
         roofLevel = amountOfLevels;
         for (int level = 0; level <= amountOfLevels; level++) {

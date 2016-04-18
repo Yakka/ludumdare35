@@ -1,0 +1,285 @@
+fileFormatVersion: 2
+guid: 187511db49204114da93436120813ee5
+timeCreated: 1460984999
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: bird2_balcony_spritesheet_0
+    21300002: bird2_balcony_spritesheet_1
+    21300004: bird2_balcony_spritesheet_2
+    21300006: bird2_balcony_spritesheet_3
+    21300008: bird2_balcony_spritesheet_4
+    21300010: bird2_balcony_spritesheet_5
+    21300012: bird2_balcony_spritesheet_6
+    21300014: bird2_balcony_spritesheet_7
+    21300016: bird2_balcony_spritesheet_8
+    21300018: bird2_balcony_spritesheet_9
+    21300020: bird2_balcony_spritesheet_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: bird2_balcony_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: 48}
+        - {x: -7, y: 20}
+        - {x: -7, y: 11}
+        - {x: -3, y: 8}
+        - {x: 19, y: 8}
+        - {x: 27, y: 9}
+        - {x: 42, y: 32}
+        - {x: 42, y: 46}
+        - {x: 40, y: 48}
+    - name: bird2_balcony_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28, y: 51}
+        - {x: 8, y: 35}
+        - {x: 7, y: 18}
+        - {x: 7, y: 1}
+        - {x: 29, y: 1}
+        - {x: 47, y: 16}
+        - {x: 47, y: 49}
+        - {x: 41, y: 51}
+    - name: bird2_balcony_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31, y: 76}
+        - {x: 28, y: 71}
+        - {x: 9, y: 62}
+        - {x: 5, y: 56}
+        - {x: 5, y: 50}
+        - {x: 7, y: 46}
+        - {x: 13, y: 24}
+        - {x: 16, y: 23}
+        - {x: 38, y: 23}
+        - {x: 55, y: 26}
+        - {x: 55, y: 68}
+        - {x: 53, y: 76}
+    - name: bird2_balcony_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19, y: 124}
+        - {x: 14, y: 121}
+        - {x: 14, y: 90}
+        - {x: 31, y: 68}
+        - {x: 46, y: 68}
+        - {x: 70, y: 101}
+        - {x: 70, y: 122}
+        - {x: 67, y: 124}
+    - name: bird2_balcony_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 46, y: 123}
+        - {x: 45, y: 124}
+        - {x: 37, y: 124}
+        - {x: 23, y: 108}
+        - {x: 23, y: 68}
+        - {x: 43, y: 68}
+        - {x: 61, y: 86}
+        - {x: 64, y: 95}
+        - {x: 64, y: 107}
+    - name: bird2_balcony_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 35, y: 122}
+        - {x: 24, y: 122}
+        - {x: 21, y: 118}
+        - {x: 21, y: 90}
+        - {x: 41, y: 71}
+        - {x: 52, y: 71}
+        - {x: 53, y: 72}
+        - {x: 53, y: 77}
+        - {x: 52, y: 100}
+        - {x: 45, y: 106}
+    - name: bird2_balcony_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 122}
+        - {x: 8, y: 118}
+        - {x: 8, y: 111}
+        - {x: 14, y: 91}
+        - {x: 40, y: 80}
+        - {x: 55, y: 80}
+        - {x: 55, y: 93}
+        - {x: 49, y: 110}
+        - {x: 26, y: 121}
+        - {x: 23, y: 122}
+    - name: bird2_balcony_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 112}
+        - {x: 2, y: 107}
+        - {x: -1, y: 101}
+        - {x: -1, y: 92}
+        - {x: 18, y: 83}
+        - {x: 41, y: 83}
+        - {x: 54, y: 102}
+        - {x: 54, y: 112}
+    - name: bird2_balcony_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 99}
+        - {x: -4, y: 97}
+        - {x: -14, y: 69}
+        - {x: -14, y: 56}
+        - {x: -10, y: 54}
+        - {x: 29, y: 54}
+        - {x: 29, y: 98}
+        - {x: 26, y: 99}
+    - name: bird2_balcony_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: 31}
+        - {x: -14, y: 19}
+        - {x: -3, y: 19}
+        - {x: 13, y: 48}
+        - {x: 13, y: 70}
+    - name: bird2_balcony_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 48}
+        - {x: -32, y: 32}
+        - {x: -21, y: 11}
+        - {x: -2, y: 8}
+        - {x: 14, y: 8}
+        - {x: 16, y: 12}
+        - {x: 16, y: 18}
+        - {x: -15, y: 48}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

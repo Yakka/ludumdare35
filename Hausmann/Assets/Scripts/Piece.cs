@@ -18,9 +18,10 @@ public class Piece : MonoBehaviour {
         Balcony2,
         Background,
         Plantable,
-        Animal,
+        Cat,
         Window,
         WindowGrid,
+        Bird,
         AmountOfConstraints
     }
 
