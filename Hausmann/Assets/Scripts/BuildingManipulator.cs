@@ -104,9 +104,23 @@ public class BuildingManipulator : MonoBehaviour {
         return piece;
     }
 
-    public void ZoomIn(int level) {
+    public void ZoomIn(int _level) {
         hasZoomed = true;
         cameraMovement.targetSize = zoomValue;
         cameraMovement.isZooming = true;
+    }
+
+    public void ZoomOut() {
+        hasZoomed = false;
+        cameraMovement.targetSize = orthographicSize;
+        cameraMovement.isZooming = true;
+    }
+
+    public void SwitchZoom(int _level) {
+        if(!hasZoomed) {
+            ZoomIn(_level);
+        } else {
+            ZoomOut();
+        }
     }
 }
