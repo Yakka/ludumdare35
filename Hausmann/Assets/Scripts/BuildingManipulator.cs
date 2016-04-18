@@ -13,13 +13,15 @@ public class BuildingManipulator : MonoBehaviour {
     private int roofLevel;
     private Vector3 lastMousePosition;
 
+    public int overedLevel;
+
     public CursorTextures standardCursor;
     public CursorTextures dragDropCursor;
 
     void Update () {
+        Piece piece = RaycastMouseToPiece();
         // Click
         if (Input.GetMouseButton(0)) { // TODO: refaire avec une fonction qui d�tecte � quel �tage est la souris (objets invisibles qui raycast?)
-            Piece piece = RaycastMouseToPiece();
             if (holdingRoof) { // Test if the player has moved the mouse enough
                 Cursor.SetCursor(dragDropCursor.holden, Vector2.zero, CursorMode.ForceSoftware);
                 // Moving down:
@@ -56,11 +58,17 @@ public class BuildingManipulator : MonoBehaviour {
                 Cursor.SetCursor(standardCursor.release, Vector2.zero, CursorMode.ForceSoftware);
             }
         }
+        
+        if (piece != null) {
+            overedLevel = piece.level;
+        } else {
+            overedLevel = -1;
+        }
 	}
 
     private Piece RaycastMouseToPiece() {
         Piece piece = null;
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, ~(1 << 8));
         if (hit.collider != null) {
             piece = hit.transform.gameObject.GetComponent<Piece>();
         }

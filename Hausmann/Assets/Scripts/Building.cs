@@ -12,6 +12,7 @@ public class Building : MonoBehaviour {
     public List<Piece> windowPrefabs = new List<Piece>();
     public Piece cornerLeftPrefab;
     public Piece cornerRightPrefab;
+    public Piece emptyCornerPrefab;
     public Piece doorPrefab;
     public List<Piece> balconyPrefabs = new List<Piece>();
     public Piece groundWindowPrefab;
@@ -95,6 +96,17 @@ public class Building : MonoBehaviour {
             cornerRight.transform.Translate(amountOfColumns * Utiles.METRIC_X, 0, 0);
             cornerRight.name = "CornerRightLevel" + _levelIndex;
             cornerRight.level = _levelIndex;
+        }
+        else {
+            Piece emptyCorner = Instantiate(emptyCornerPrefab, transform.position, transform.rotation) as Piece;
+            emptyCorner.transform.parent = transform;
+            emptyCorner.transform.Translate(translationY);
+            emptyCorner.transform.Translate(-Utiles.METRIC_X, 0, 0);
+            emptyCorner.name = "CornerLeftLevel" + _levelIndex;
+            if(_levelIndex == amountOfLevels) {
+                emptyCorner.isRoof = true;
+            }
+            emptyCorner.level = _levelIndex;
         }
         // Main building:
         for (int column = 0; column < amountOfColumns; column++) {
