@@ -23,6 +23,7 @@ public class Building : MonoBehaviour {
 
     private int roofLevel;
     private bool hasPlants = false;
+    private bool hasCats = false;
 
     void Start () {
         BuildTheBuilding();
@@ -116,12 +117,6 @@ public class Building : MonoBehaviour {
             else if (levelsWithBalconies.Contains(_levelIndex)) {
                 piece = Instantiate(FindNextPiece(balconyPrefabs, previousPiece), transform.position, transform.rotation) as Piece;
                 name = "Balcony";
-
-                //TEMP CAT
-                Piece cat = Instantiate(catPrefab, transform.position, transform.rotation) as Piece;
-                cat.transform.parent = transform;
-                cat.transform.Translate(translationX + translationY);
-                cat.SetTexture(0);
             }
             // Windows:
             else {
@@ -220,6 +215,32 @@ public class Building : MonoBehaviour {
             AddPlants();
         }
         hasPlants = !hasPlants;
+    }
+
+    public void AddCats() {
+        Piece[] pieces = GetComponentsInChildren<Piece>();
+        foreach (Piece piece in pieces) {
+            piece.AddCat(catPrefab);
+        }
+    }
+
+    public void RemoveCats() {
+        Piece[] pieces = GetComponentsInChildren<Piece>();
+        foreach (Piece piece in pieces) {
+            if(piece.name == "Cat") {
+                Destroy(piece.gameObject);
+            }
+        }
+    }
+
+    public void SwitchCats() {
+        if (hasCats) {
+            RemoveCats();
+        }
+        else {
+            AddCats();
+        }
+        hasCats = !hasCats;
     }
 
 }
