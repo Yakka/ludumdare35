@@ -7,7 +7,7 @@ public class CustomButton : MonoBehaviour {
     public Texture2D texture2;
 
     public bool drawOnOver = false;
-    public int leveltoDraw;
+    public int levelToDraw;
     public BuildingManipulator buildingManipulator;
 
     private bool hasSwapped = false;
@@ -35,7 +35,7 @@ public class CustomButton : MonoBehaviour {
     public void Update() {
         if(drawOnOver) {
             
-            if(buildingManipulator.overedLevel == leveltoDraw) {
+            if(buildingManipulator.overedLevel == levelToDraw) {
                 GetComponent<UnityEngine.UI.Image>().enabled = true;
             }
             else {

@@ -8,15 +8,30 @@ public class BuildingManipulator : MonoBehaviour {
         public Texture2D holden;
     }
 
+    private struct ZoomMovement {
+        public Vector3 targetPosition;
+        public float targetSize;
+        public bool isZooming;
+    }
+
     private bool holdingRoof = false;
     private Building grabbedBuilding;
     private int roofLevel;
     private Vector3 lastMousePosition;
 
     public int overedLevel;
+    public float zoomValue;
 
     public CursorTextures standardCursor;
     public CursorTextures dragDropCursor;
+
+    private float orthographicSize;
+    private ZoomMovement cameraMovement;
+
+    public void Start() {
+        orthographicSize = GetComponent<Camera>().orthographicSize;
+        cameraMovement.isZooming = false;
+    }
 
     void Update () {
         Piece piece = RaycastMouseToPiece();
@@ -64,6 +79,11 @@ public class BuildingManipulator : MonoBehaviour {
         } else {
             overedLevel = -1;
         }
+
+        // Camera zooming
+        if(cameraMovement.isZooming) {
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, cameraMovement.targetSize, 2f* Time.deltaTime);
+        }
 	}
 
     private Piece RaycastMouseToPiece() {
@@ -81,5 +101,10 @@ public class BuildingManipulator : MonoBehaviour {
             piece = null;
         }
         return piece;
+    }
+
+    public void ZoomTo(int level) {
+        cameraMovement.targetSize = zoomValue;
+        cameraMovement.isZooming = true;
     }
 }

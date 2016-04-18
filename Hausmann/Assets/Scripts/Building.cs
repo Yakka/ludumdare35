@@ -104,7 +104,7 @@ public class Building : MonoBehaviour {
             emptyCorner.transform.Translate(-Utiles.METRIC_X, 0, 0);
             emptyCorner.name = "CornerLeftLevel" + _levelIndex;
             if(_levelIndex == amountOfLevels) {
-                emptyCorner.isRoof = true;
+                //emptyCorner.isRoof = true;
             }
             emptyCorner.level = _levelIndex;
         }
