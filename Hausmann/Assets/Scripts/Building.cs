@@ -16,7 +16,7 @@ public class Building : MonoBehaviour {
     public List<Piece> balconyPrefabs = new List<Piece>();
     public Piece groundWindowPrefab;
     public Piece roofPrefab;
-    public Piece catPrefab;
+    public List<Piece> catPrefabs = new List<Piece>();
     public List<Piece> backgroundPrefabs = new List<Piece>();
     public List<Piece> groundBackgroundPrefabs = new List<Piece>();
     public List<Piece> roofBackgroundPrefabs = new List<Piece>();
@@ -220,7 +220,8 @@ public class Building : MonoBehaviour {
     public void AddCats() {
         Piece[] pieces = GetComponentsInChildren<Piece>();
         foreach (Piece piece in pieces) {
-            piece.AddCat(catPrefab);
+            if(Random.Range(0, 10) >= 5)
+                piece.AddCat(catPrefabs[Random.Range(0, catPrefabs.Count)]);
         }
     }
 

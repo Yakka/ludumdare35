@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: 2fbbad28003f6fb4ea03135c513c7225
-timeCreated: 1460933621
+timeCreated: 1460977872
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: cat1_spritesheet_0
-    21300002: cat1_spritesheet_1
-    21300004: cat1_spritesheet_2
+    21300000: cat1_balcony_spritesheet_0
+    21300002: cat1_balcony_spritesheet_1
+    21300004: cat1_balcony_spritesheet_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,7 +53,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: cat1_spritesheet_0
+    - name: cat1_balcony_spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -73,7 +73,7 @@ TextureImporter:
         - {x: 14, y: 84}
         - {x: 19, y: 102}
         - {x: 19, y: 144}
-    - name: cat1_spritesheet_1
+    - name: cat1_balcony_spritesheet_1
       rect:
         serializedVersion: 2
         x: 200
@@ -92,7 +92,7 @@ TextureImporter:
         - {x: 6, y: 57}
         - {x: 19, y: 80}
         - {x: 19, y: 147}
-    - name: cat1_spritesheet_2
+    - name: cat1_balcony_spritesheet_2
       rect:
         serializedVersion: 2
         x: 400

@@ -1,0 +1,120 @@
+fileFormatVersion: 2
+guid: 14a74fdcc083342469cff11d0c938938
+timeCreated: 1460977847
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: cat2_balcony_spritesheet_0
+    21300002: cat2_balcony_spritesheet_1
+    21300004: cat2_balcony_spritesheet_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: cat2_balcony_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 61, y: 125}
+        - {x: 50, y: 147}
+        - {x: 35, y: 147}
+        - {x: 24, y: 143}
+        - {x: 24, y: 65}
+        - {x: 46, y: 65}
+        - {x: 70, y: 93}
+        - {x: 70, y: 107}
+        - {x: 63, y: 123}
+    - name: cat2_balcony_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 37, y: 147}
+        - {x: 31, y: 140}
+        - {x: 31, y: 119}
+        - {x: 33, y: 94}
+        - {x: 33, y: 59}
+        - {x: 38, y: 57}
+        - {x: 57, y: 57}
+        - {x: 70, y: 64}
+        - {x: 70, y: 113}
+        - {x: 49, y: 147}
+    - name: cat2_balcony_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 300
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31, y: 147}
+        - {x: 31, y: 110}
+        - {x: 32, y: 93}
+        - {x: 73, y: 55}
+        - {x: 85, y: 55}
+        - {x: 85, y: 76}
+        - {x: 77, y: 131}
+        - {x: 50, y: 147}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
