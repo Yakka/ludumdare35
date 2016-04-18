@@ -9,7 +9,7 @@ public class Building : MonoBehaviour {
 
     public List<int> levelsWithBalconies = new List<int>();
 
-    public Piece windowPrefab;
+    public List<Piece> windowPrefabs = new List<Piece>();
     public Piece cornerLeftPrefab;
     public Piece cornerRightPrefab;
     public Piece doorPrefab;
@@ -18,6 +18,7 @@ public class Building : MonoBehaviour {
     public Piece roofPrefab;
     public List<Piece> balconyCatPrefabs = new List<Piece>();
     public List<Piece> windowCatPrefabs = new List<Piece>();
+    public List<Piece> windowGridCatPrefabs = new List<Piece>();
     public List<Piece> backgroundPrefabs = new List<Piece>();
     public List<Piece> groundBackgroundPrefabs = new List<Piece>();
     public List<Piece> roofBackgroundPrefabs = new List<Piece>();
@@ -121,7 +122,7 @@ public class Building : MonoBehaviour {
             }
             // Windows:
             else {
-                piece = Instantiate(windowPrefab, transform.position, transform.rotation) as Piece;
+                piece = Instantiate(windowPrefabs[Random.Range(0, windowPrefabs.Count)], transform.position, transform.rotation) as Piece;
                 name = "Window";
             }
             piece.transform.parent = transform;
@@ -226,6 +227,8 @@ public class Building : MonoBehaviour {
                     piece.AddCat(balconyCatPrefabs[Random.Range(0, balconyCatPrefabs.Count)]);
                 } else if(piece.constraints.Contains(Piece.Constraint.Window)) {
                     piece.AddCat(windowCatPrefabs[Random.Range(0, windowCatPrefabs.Count)]);
+                } else if (piece.constraints.Contains(Piece.Constraint.WindowGrid)) {
+                    piece.AddCat(windowGridCatPrefabs[Random.Range(0, windowCatPrefabs.Count)]);
                 }
             }
         }

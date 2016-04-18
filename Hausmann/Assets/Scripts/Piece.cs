@@ -20,6 +20,7 @@ public class Piece : MonoBehaviour {
         Plantable,
         Animal,
         Window,
+        WindowGrid,
         AmountOfConstraints
     }
 
