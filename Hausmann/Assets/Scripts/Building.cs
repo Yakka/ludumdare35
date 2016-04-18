@@ -27,6 +27,7 @@ public class Building : MonoBehaviour {
     private int roofLevel;
     private bool hasPlants = false;
     private bool hasCats = false;
+    private bool hasBirds = false;
 
     void Start () {
         BuildTheBuilding();
@@ -37,6 +38,7 @@ public class Building : MonoBehaviour {
         DestroyEverything();
         hasPlants = false;
         hasCats = false;
+        hasBirds = false;
         amountOfLevels = Random.Range(1,7);
         roofLevel = amountOfLevels;
         for (int level = 0; level <= amountOfLevels; level++) {
@@ -255,4 +257,33 @@ public class Building : MonoBehaviour {
         hasCats = !hasCats;
     }
 
+    public void AddBirds() {
+        Piece[] pieces = GetComponentsInChildren<Piece>();
+        foreach (Piece piece in pieces) {
+            if (Random.Range(0, 10) >= 5) {
+                if (piece.constraints.Contains(Piece.Constraint.Balcony)) {
+                    piece.AddBird(balconyBirdPrefabs[Random.Range(0, balconyBirdPrefabs.Count)]);
+                }
+            }
+        }
+    }
+
+    public void RemoveBirds() {
+        Piece[] pieces = GetComponentsInChildren<Piece>();
+        foreach (Piece piece in pieces) {
+            if (piece.name == "Bird") {
+                Destroy(piece.gameObject);
+            }
+        }
+    }
+
+    public void SwitchBirds() {
+        if (hasBirds) {
+            RemoveBirds();
+        }
+        else {
+            AddBirds();
+        }
+        hasBirds = !hasBirds;
+    }
 }

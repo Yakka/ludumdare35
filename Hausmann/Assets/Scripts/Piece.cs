@@ -43,6 +43,11 @@ public class Piece : MonoBehaviour {
         }
         changeTextureCooldown = Random.Range(0f, CHANGE_TEXTURE_COOLDOWN);
         // TODO: Random offset in the animation
+
+        Animator animator = GetComponent<Animator>();
+        if(animator != null) {
+            animator.Play("Idle", -1, Random.Range(0f, 1f));
+        }
     }
 
     public void SetTexture(int _index) {
@@ -137,5 +142,14 @@ public class Piece : MonoBehaviour {
         cat.transform.parent = transform;
         cat.SetTexture(0);
         cat.name = "Cat";
+    }
+
+    public void AddBird(Piece _birdPrefab) {
+        Piece bird = Instantiate(_birdPrefab, transform.position, transform.rotation) as Piece;
+        SpriteRenderer renderer = bird.GetComponent<SpriteRenderer>();
+        renderer.sprite = bird.textures[0].mainTexture;
+        bird.transform.parent = transform;
+        bird.SetTexture(0);
+        bird.name = "Bird";
     }
 }
