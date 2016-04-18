@@ -26,18 +26,24 @@ public class BuildingManipulator : MonoBehaviour {
     public CursorTextures dragDropCursor;
 
     private float orthographicSize;
+    private Vector3 initalCameraPosition;
     private ZoomMovement cameraMovement;
     public bool hasZoomed = false;
 
+    private bool isMoving = false;
+    private const float SPEED = 0.1f;
+    private Vector3 currentSpeed;
+
     public void Start() {
-        orthographicSize = GetComponent<Camera>().orthographicSize;
+        orthographicSize = Camera.main.orthographicSize;
         cameraMovement.isZooming = false;
+        initalCameraPosition = Camera.main.transform.position;
     }
 
     void Update () {
         Piece piece = RaycastMouseToPiece();
         // Click
-        if (Input.GetMouseButton(0)) { // TODO: refaire avec une fonction qui d�tecte � quel �tage est la souris (objets invisibles qui raycast?)
+        if (Input.GetMouseButton(0)) { // TODO: refaire avec une fonction qui detecte a quel etage est la souris (objets invisibles qui raycast?)
             if (holdingRoof) { // Test if the player has moved the mouse enough
                 Cursor.SetCursor(dragDropCursor.holden, Vector2.zero, CursorMode.ForceSoftware);
                 // Moving down:
@@ -84,6 +90,15 @@ public class BuildingManipulator : MonoBehaviour {
         // Camera zooming
         if(cameraMovement.isZooming) {
             Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, cameraMovement.targetSize, 2f* Time.deltaTime);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraMovement.targetPosition, 2f * Time.deltaTime);
+
+            if(Mathf.Abs(Camera.main.orthographicSize - cameraMovement.targetSize) < 1f && Vector3.Distance(Camera.main.transform.position, cameraMovement.targetPosition) < 1f) {
+                cameraMovement.isZooming = false;
+            }
+        }
+        // Camera moving
+        if(isMoving) {
+            Camera.main.transform.Translate(currentSpeed);
         }
 	}
 
@@ -104,23 +119,40 @@ public class BuildingManipulator : MonoBehaviour {
         return piece;
     }
 
-    public void ZoomIn(int _level) {
+    public void ZoomIn() {
         hasZoomed = true;
         cameraMovement.targetSize = zoomValue;
         cameraMovement.isZooming = true;
+        cameraMovement.targetPosition = Camera.main.transform.position; // TODO: target a position in the level
     }
 
     public void ZoomOut() {
         hasZoomed = false;
         cameraMovement.targetSize = orthographicSize;
         cameraMovement.isZooming = true;
+        cameraMovement.targetPosition = initalCameraPosition;
     }
 
-    public void SwitchZoom(int _level) {
+    public void SwitchZoom() {
         if(!hasZoomed) {
-            ZoomIn(_level);
+            ZoomIn();
         } else {
             ZoomOut();
         }
+    }
+
+    public void StartMovingUp() {
+        currentSpeed = SPEED * Vector3.up;
+        isMoving = true;
+    }
+
+    public void StopMoving() {
+        currentSpeed = Vector3.zero;
+        isMoving = false;
+    }
+
+    public void StartMovingDown() {
+        currentSpeed = SPEED * Vector3.down;
+        isMoving = true;
     }
 }
