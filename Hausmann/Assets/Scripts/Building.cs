@@ -31,8 +31,11 @@ public class Building : MonoBehaviour {
     private bool hasCats = false;
     private bool hasBirds = false;
 
+    private AudioSource shapeshiftSound;
+
     void Start () {
         BuildTheBuilding();
+        shapeshiftSound = GetComponent<AudioSource>();
 
     }
 
@@ -203,6 +206,7 @@ public class Building : MonoBehaviour {
                 piece.level = _levelIndex;
             }
         }
+        shapeshiftSound.Play();
     }
 
     public void AddPlants() {

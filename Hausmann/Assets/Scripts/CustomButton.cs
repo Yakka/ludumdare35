@@ -13,7 +13,7 @@ public class CustomButton : MonoBehaviour {
     private bool hasSwapped = false;
     private CanvasRenderer canvas;
     public bool hasDisappeared = false;
-    
+
 
     public void Start() {
         canvas = GetComponent<CanvasRenderer>();

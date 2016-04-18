@@ -34,6 +34,7 @@ public class BuildingManipulator : MonoBehaviour {
     private const float SPEED = 0.1f;
     private Vector3 currentSpeed;
 
+
     public void Start() {
         orthographicSize = Camera.main.orthographicSize;
         cameraMovement.isZooming = false;
