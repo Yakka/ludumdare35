@@ -27,6 +27,7 @@ public class BuildingManipulator : MonoBehaviour {
 
     private float orthographicSize;
     private ZoomMovement cameraMovement;
+    public bool hasZoomed = false;
 
     public void Start() {
         orthographicSize = GetComponent<Camera>().orthographicSize;
@@ -103,7 +104,8 @@ public class BuildingManipulator : MonoBehaviour {
         return piece;
     }
 
-    public void ZoomTo(int level) {
+    public void ZoomIn(int level) {
+        hasZoomed = true;
         cameraMovement.targetSize = zoomValue;
         cameraMovement.isZooming = true;
     }

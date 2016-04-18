@@ -12,6 +12,7 @@ public class CustomButton : MonoBehaviour {
 
     private bool hasSwapped = false;
     private CanvasRenderer canvas;
+    private bool hasDisappeared = false;
     
 
     public void Start() {
@@ -32,10 +33,20 @@ public class CustomButton : MonoBehaviour {
         hasSwapped = false;
     }
 
+    public void Disappear() {
+        hasDisappeared = true;
+        GetComponent<UnityEngine.UI.Image>().enabled = false;
+    }
+
+    public void Appear() {
+        hasDisappeared = false;
+        GetComponent<UnityEngine.UI.Image>().enabled = true;
+    }
+
     public void Update() {
         if(drawOnOver) {
             
-            if(buildingManipulator.overedLevel == levelToDraw) {
+            if(buildingManipulator.overedLevel == levelToDraw && !hasDisappeared) {
                 GetComponent<UnityEngine.UI.Image>().enabled = true;
             }
             else {
